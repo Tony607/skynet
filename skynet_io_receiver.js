@@ -27,10 +27,7 @@ socket.on('connect', function () {
 	socket.on('ready', function (data) {
 		if (data.status == 201) {
 			console.log('Device authenticated with SkyNet');
-			// Have not tested this properly yet
-			// Send/Receive messages
-			
-
+			// Receive/Send messages
 			socket.on('message', function (msg) {
 				//       console.log('message received', msg);
 				socket.emit("message", {

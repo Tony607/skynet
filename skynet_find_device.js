@@ -1,8 +1,6 @@
-//This is the sender app
-//It send message to the receiver device every 3 secs
-//It also print out any received message payload
-
+//This is the app which find those devices matching a specific criteria
 var io = require('socket.io-client');
+var filter = "123";
 socket = io.connect('http://skynet.im', {
 		port : 80
 	});
@@ -28,23 +26,16 @@ socket.on('connect', function () {
 	socket.on('ready', function (data) {
 		if (data.status == 201) {
 			console.log('Device authenticated with SkyNet');
-			// Send/Receive messages
-			//For test purpose, we send data every 3 secs
-			setInterval(function () {
-				socket.emit("message", {
-					"devices" : 'd4bc3851-0d2a-11e4-b13f-933e845654f9',// this is the receiver UUID
-					"payload" : {
-						"serialin" : "Sender--->Value<" + parseInt(Math.random() * 100)//this is the data to send
-					}
-				});
-			}, 3000)
-
-			socket.on('message', function (msg) {
-				//       console.log('message received', msg);
-				//print any incoming message payload
-				console.log(msg.payload);
-
+			socket.emit('devices', {"key":filter}, function (data) {
+			  console.log(data);
 			});
+
+			// socket.on('message', function (msg) {
+				// //       console.log('message received', msg);
+				// //print any incoming message payload
+				// console.log(msg.payload);
+
+			// });
 		}
 	});
 });

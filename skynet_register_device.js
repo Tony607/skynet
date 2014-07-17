@@ -1,8 +1,8 @@
-//This is the sender app
-//It send message to the receiver device every 3 secs
-//It also print out any received message payload
-
+//This is the app which register a device on skynet.im and save the
+//uuid and token to file "devices.txt"
 var io = require('socket.io-client');
+var fs = require('fs')
+var outputfile = "devices.txt"
 socket = io.connect('http://skynet.im', {
 		port : 80
 	});
@@ -28,23 +28,28 @@ socket.on('connect', function () {
 	socket.on('ready', function (data) {
 		if (data.status == 201) {
 			console.log('Device authenticated with SkyNet');
-			// Send/Receive messages
-			//For test purpose, we send data every 3 secs
-			setInterval(function () {
-				socket.emit("message", {
-					"devices" : 'd4bc3851-0d2a-11e4-b13f-933e845654f9',// this is the receiver UUID
-					"payload" : {
-						"serialin" : "Sender--->Value<" + parseInt(Math.random() * 100)//this is the data to send
+			socket.emit('register', {"key":"123"}, function (data) {
+				console.log("uuid: "+data.uuid);
+				console.log("token: "+data.token);
+				var appendText = "{\n\tuuid:\t"+data.uuid+"\n"+"\ttoken:\t"+data.token+"\n}\n";
+				console.log("====>>Writeing to File"+outputfile+"...");
+				fs.appendFile(outputfile, appendText, function(err) {
+					if(err) {
+						console.log(err);
+						process.exit(code=1);
+					} else {
+						console.log("The device info was saved to "+outputfile+"!");
+						process.exit(code=0);
 					}
-				});
-			}, 3000)
-
-			socket.on('message', function (msg) {
-				//       console.log('message received', msg);
-				//print any incoming message payload
-				console.log(msg.payload);
-
+				}); 
 			});
+
+			// socket.on('message', function (msg) {
+				// //       console.log('message received', msg);
+				// //print any incoming message payload
+				// console.log(msg.payload);
+
+			// });
 		}
 	});
 });

@@ -1,0 +1,12 @@
+{
+	uuid:	b6341c81-0df3-11e4-ba98-ed547cf24cbd
+	token:	f76ovsn5r9xdpldifc68n8yqijwwb3xr
+}
+{
+	uuid:	cf6a6d31-0df3-11e4-ba98-ed547cf24cbd
+	token:	007m329y08b3ce4s4iplrjd3ek9jxlxr
+}
+{
+	uuid:	d6e4a441-0df3-11e4-ba98-ed547cf24cbd
+	token:	09cvs306d4i49rudivjhz9ho9184zpvi
+}
