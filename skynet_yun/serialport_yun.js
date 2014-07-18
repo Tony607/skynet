@@ -1,0 +1,21 @@
+
+// set up serialport to connect to the onboard atmega32u4
+var com = require("serialport");
+var serialPort = new com.SerialPort("/dev/ttyATH0", {
+  baudrate: 9600,
+  parser: com.parsers.readline('\r\n')
+});
+
+
+
+serialPort.on("open", function () {
+    console.log('open');
+    setInterval(function(){serialPort.write("New--Data:"+parseInt(Math.random() * 100)+"\n\r");},2000)
+  });
+
+serialPort.on('data', function(data) {
+  console.log('data received: ' + data);
+});
+
+
+
