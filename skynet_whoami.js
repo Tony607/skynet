@@ -1,12 +1,11 @@
 //This is the app which find those devices matching a specific criteria
 var io = require('socket.io-client');
-var filter = "123";
 var myDevice = {
-	uuid: "449cb1c1-0de1-11e4-ba98-ed547cf24cbd",
-	token: "jm9duwpozgvkuik9blgtmt4lys73z0k9"
+	uuid:	"b1783fb1-0e83-11e4-b12d-4dbc4a9ffc1e",
+	token:	"iz9nsgoji88v9529ty27nbnsr8cfecdi"
 };
-socket = io.connect('http://skynet.im', {
-		port : 80
+socket = io.connect('http://localhost:3000', {
+		port : 3000
 	});
 
 socket.on('connect', function () {

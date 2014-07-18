@@ -3,20 +3,30 @@
 //It also print out any received message payload
 
 var io = require('socket.io-client');
-socket = io.connect('http://skynet.im', {
-		port : 80
+socket = io.connect('http://localhost:3000', {
+		port : 3000
 	});
-
+//This is the sender
+// Replace 449cb1c1....cbd with your uuid and replace the token as well.
+var myDevice = {
+	uuid:	"b1783fb1-0e83-11e4-b12d-4dbc4a9ffc1e",
+	token:	"iz9nsgoji88v9529ty27nbnsr8cfecdi"
+};
+// this is the receiver
+var receiveDevice = {
+	uuid:	"6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e",
+	//token:	"k5mvb6iokn4b1emidu31f3tuqaypsyvi"
+}
 socket.on('connect', function () {
 	console.log('Requesting websocket connection to SkyNet');
-	// Replace 449cb1c1....cbd with your uuid and replace the token as well.
+	
 	socket.on('identify', function (data) {
 		console.log('Websocket connecting to SkyNet with socket id: ' + data.socketid);
-		console.log('Sending device uuid: 449cb1c1-0de1-11e4-ba98-ed547cf24cbd');
+		console.log('Sending device uuid: '+myDevice.uuid);
 		socket.emit('identity', {
-			uuid : '449cb1c1-0de1-11e4-ba98-ed547cf24cbd',//This is the sender UUID
+			uuid : myDevice.uuid,
 			socketid : data.socketid,
-			token : 'jm9duwpozgvkuik9blgtmt4lys73z0k9'//This is the sender token
+			token : myDevice.token
 		});
 	});
 
@@ -32,7 +42,7 @@ socket.on('connect', function () {
 			//For test purpose, we send data every 3 secs
 			setInterval(function () {
 				socket.emit("message", {
-					"devices" : 'd4bc3851-0d2a-11e4-b13f-933e845654f9',// this is the receiver UUID
+					"devices" : receiveDevice.uuid,
 					"payload" : {
 						"serialin" : "Sender--->Value<" + parseInt(Math.random() * 100)//this is the data to send
 					}

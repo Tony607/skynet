@@ -1,0 +1,19 @@
+#GET /devices
+#Returns an array of all devices available to you on Meshblu. Notice you can query against custom properties i.e. all drones or light switches and online/offline etc.
+
+curl "http://localhost:3000/devices?name=arduino" --header "skynet_auth_uuid: 6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e" --header "skynet_auth_token: k5mvb6iokn4b1emidu31f3tuqaypsyvi"
+
+#GET /devices/uuid
+#Returns all information on a given device by its UUID
+
+curl "http://localhost:3000/devices/6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e" --header "skynet_auth_uuid: 6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e" --header "skynet_auth_token: k5mvb6iokn4b1emidu31f3tuqaypsyvi"
+
+# POST /devices
+# Registers a device on the Meshblu network. You can add as many properties to the device object as desired. Meshblu returns a device UUID and token which needs to be used with future updates to the device object
+# Note: You can pass in a token parameter to overide skynet issuing you one
+
+curl -X POST -d "name=arduino&token=123&description=this+is+a+test" "http://localhost:3000/devices" --header "skynet_auth_uuid: 6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e" --header "skynet_auth_token: k5mvb6iokn4b1emidu31f3tuqaypsyvi"
+
+curl -X POST -d '{"devices":"all","message":"Value=30"}' "http://localhost:3000/messages" --header "skynet_auth_uuid: 6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e" --header "skynet_auth_token: k5mvb6iokn4b1emidu31f3tuqaypsyvi"
+
+curl -X POST -d '{"devices":"6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e","message":{"yellow":"off"}}' "http://localhost:3000/messages" --header "skynet_auth_uuid: b1783fb1-0e83-11e4-b12d-4dbc4a9ffc1e" --header "skynet_auth_token: iz9nsgoji88v9529ty27nbnsr8cfecdi"

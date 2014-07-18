@@ -10,3 +10,20 @@
 	uuid:	d6e4a441-0df3-11e4-ba98-ed547cf24cbd
 	token:	09cvs306d4i49rudivjhz9ho9184zpvi
 }
+//===private net===
+{
+	uuid:	"6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e",
+	token:	"k5mvb6iokn4b1emidu31f3tuqaypsyvi"
+}
+{
+	uuid:	"b1783fb1-0e83-11e4-b12d-4dbc4a9ffc1e",
+	token:	"iz9nsgoji88v9529ty27nbnsr8cfecdi"
+}
+{
+	name:	"arduino",
+	description:	"this is a test"
+	uuid:	"58a5eb41-0e87-11e4-b12d-4dbc4a9ffc1e",
+	token:	"123"
+}
+
+//===End of Private net===
