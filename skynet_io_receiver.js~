@@ -6,13 +6,13 @@ socket = io.connect('http://skynet.im', {
 		port : 80
 	});
 var myDevice = {
-	uuid:	"d4bc3851-0d2a-11e4-b13f-933e845654f9",
-	token:	"5ira2ftm2mb49529miqzyk25z7kz9f6r"
+	uuid:	"6fb35ac1-0e82-11e4-b12d-4dbc4a9ffc1e",
+	token:	"k5mvb6iokn4b1emidu31f3tuqaypsyvi"
 };
 
 var senderDevice = {
-	uuid:	"449cb1c1-0de1-11e4-ba98-ed547cf24cbd",
-	//token:	"xxxx"
+	uuid:	"b1783fb1-0e83-11e4-b12d-4dbc4a9ffc1e",
+	token:	"iz9nsgoji88v9529ty27nbnsr8cfecdi"
 }
 
 socket.on('connect', function () {
